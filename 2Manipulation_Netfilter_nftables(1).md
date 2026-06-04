@@ -227,6 +227,12 @@ Pieges :
 - Si le ping passe mais pas le HTTP ("awaiting response") : passerelle du serveur DMZ
   cassee (voir piege etape 2).
 
+Tests de la config (depuis le client LAN)
+```
+ping 172.16.0.10                      # le serveur DMZ doit répondre
+wget -qO- http://172.16.0.10 | head    # tu dois voir le HTML de la page Apache par défaut
+```
+(on peut aussi acceder a la page du serveur web sur le navigateur avec "http://172.16.0.10:80"
 
 # 6. WAN -> DMZ (DNAT du site web + SSH 61337 -> 22)
 

@@ -250,6 +250,12 @@ Ajouter dans la chaine forward (table inet filter) :
     iifname $WAN oifname $DMZ ip daddr 172.16.0.10 tcp dport 80 accept
     iifname $WAN oifname $DMZ ip daddr 172.16.0.10 tcp dport 22 accept
 
+Tests de la config (depuis le client externe)
+```
+wget http://<IP_WAN>              # site web de la DMZ
+ssh -p 61337 user@<IP_WAN>        # SSH vers le serveur DMZ
+```
+
 Pieges :
 - LE piege classique : le DNAT (prerouting) s'execute AVANT la chaine forward. Quand le
   paquet arrive dans forward, sa destination est DEJA traduite. On filtre donc sur

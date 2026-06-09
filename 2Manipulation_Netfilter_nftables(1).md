@@ -377,6 +377,14 @@ conntrack) :
 
 Verifier : `sudo nft list set inet filter blocked_IPs`
 
+Test de la config depuis client externe :
+```
+# sur le client externe, temporairement :
+sudo ip addr add 192.168.99.99/24 dev enp0s3
+ping <UNE_DES_IP_BLOQUER> <IP_WAN>  # doit être bloqué (aucune réponse, drop
+ping -I 192.168.99.99 10.1.31.3 # exemple
+sudo ip addr del 192.168.99.99/24 dev enp0s3    # on remet propre ensuite
+```
 Pieges :
 - NE JAMAIS bloquer la plage dans laquelle se trouve sa propre interface WAN. A l'ecole
   (WAN en 10.x) -> exclure 10.0.0.0/8. A la maison (WAN en 192.168.68.x) -> exclure

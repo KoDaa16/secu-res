@@ -44,7 +44,7 @@ Activer le routage sur le firewall (obligatoire, sinon rien ne traverse) :
     sudo sysctl --system
     cat /proc/sys/net/ipv4/ip_forward    # doit afficher 1
 
-Installer les services sur le serveur DMZ AVANT d'appliquer le filtrage :
+Installer les services sur le firewall et le serveur DMZ AVANT d'appliquer le filtrage :
 
     sudo apt update
     sudo apt install -y apache2 openssh-server
@@ -92,7 +92,7 @@ Firewall, /etc/network/interfaces :
     iface enp0s9 inet static
         address 172.16.0.254/16
 
-Firewall :
+Firewall DNS force directement dans /etc/resolv.conf :
 ```
 echo 'nameserver 208.67.222.123' | sudo tee /etc/resolv.conf
 ```
@@ -463,6 +463,13 @@ WAN -> Firewall, logging SSH :
 
 Politique par defaut sur les 3 chaines de filtrage : drop.
 
+#14 si besoin d'avoir accès au réseau 
+1. Copier le fichier de config avec "cp"
+2. Supprimer le contenu du fichier de config "nano"
+3. Recharger le fichier vide "sudo nft -f /etc/nftables.conf"
+4. Supprimer les regles "sudo nft flush ruleset"
+5. La c'est bon
+6. Remmettre le contenu du fichier et le recharger : "cp" puis "nft -f /etc/nftables.conf"
 
 # Recapitulatif des pieges les plus couteux
 

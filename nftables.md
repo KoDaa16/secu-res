@@ -382,7 +382,7 @@ Test de la config depuis client externe :
 # sur le client externe, temporairement :
 sudo ip addr add 192.168.99.99/24 dev enp0s3
 ping <UNE_DES_IP_BLOQUER> <IP_WAN>  # doit être bloqué (aucune réponse, drop
-ping -I 192.168.99.99 10.1.31.3 # exemple
+ping -I 172.16.0.0 10.1.31.3 # exemple
 sudo ip addr del 192.168.99.99/24 dev enp0s3    # on remet propre ensuite
 ```
 Pieges :

@@ -442,6 +442,7 @@ Protocol → UDP on IPv4 only
 Interface → WAN
 Local port → 1195
 Server host or address → l'adresse WAN de PF1 (le 10.1.31.x de PF1)
+Server port 1195
 TLS Configuration → coche Use a TLS Key
 décoche Automatically generate a TLS Key et colle la key TLS 
 Peer Certificate Authority → sélectionne VPN-CA

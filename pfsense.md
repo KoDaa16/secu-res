@@ -460,7 +460,14 @@ Save. Apply Changes.
 **PF1 → Firewall → Rules → WAN → Copier celui 1194 et modifier juste le port avec 1195
 Save. Apply Changes.**
 
-Pour tester les pings → Disable l’ancien Tunnel pour montrer que le nouveau (ssl/tls) fonctionne 
+Pour tester les pings → Disable l’ancien Tunnel pour montrer que le nouveau (ssl/tls) fonctionne :
+
+diable :
+PF1 → VPN → OpenVPN → Servers → modifier le tunnel provisoire -> cocher disable this client et save
+PF2 → VPN → OpenVPN → Clients → → modifier le tunnel provisoire -> cocher disable this client et save
+
+tests ping :
+Sur Routeur ping client 2 (ping 172.18.0.10). Sur Client 1 ping Client 2 (ping 172.18.0.10) et depuis client 2 ping client 1 (ping 172.16.0.129)
 
 # Ce que tu dois savoir expliquer à l'oral
 

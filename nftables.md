@@ -113,6 +113,10 @@ Serveur DMZ, /etc/network/interfaces :
     iface enp0s3 inet static
         address 172.16.0.10/16
         gateway 172.16.0.254
+Serveur DMZ, DNS force directement dans /etc/resolv.conf :
+```
+echo 'nameserver 208.67.222.123' | sudo tee /etc/resolv.conf
+```
 
 Client LAN, /etc/network/interfaces :
 ```
@@ -133,6 +137,22 @@ Pieges :
 - Coherence de la passerelle DMZ : le serveur DMZ doit avoir gateway = l'IP REELLE du
   firewall cote DMZ (172.16.0.254), sinon le TCP se connecte mais la reponse ne revient
   jamais ("awaiting response..."). Attention .254 != .254.
+
+Problèmes addresse APIPA :
+
+Sur DMZ : 
+```
+echo 'denyinterfaces enp0s3' | sudo tee -a /etc/dhcpcd.conf
+sudo pkill dhcpcd
+sudo systemctl restart networking
+```
+Verif que c'est corrigé : 
+```
+ip -br a           # une seule IP : 172.16.0.10/16, plus d'APIPA
+ip route show      # default via 172.16.0.254, stable
+ps aux | grep dhcpcd    # dhcpcd ne doit plus tourner sur enp0s3
+```
+
 
 Test de la config avant de passer a nftables :
 FIREWALL (doit joindre ses 3 zones) :

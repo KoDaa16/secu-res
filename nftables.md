@@ -114,6 +114,13 @@ Serveur DMZ, /etc/network/interfaces :
         address 172.16.0.10/16
         gateway 172.16.0.254
 
+Client LAN, /etc/network/interfaces :
+```
+auto enp0s3
+iface enp0s3 inet static 
+	address 192.168.1.10/24 
+	gateway 192.168.1.254
+```
 Client LAN, DNS force directement dans /etc/resolv.conf :
 
     echo 'nameserver 208.67.222.123' | sudo tee /etc/resolv.conf
@@ -127,6 +134,29 @@ Pieges :
   firewall cote DMZ (172.16.0.254), sinon le TCP se connecte mais la reponse ne revient
   jamais ("awaiting response..."). Attention .254 != .254.
 
+Test de la config avant de passer a nftables :
+FIREWALL (doit joindre ses 3 zones) :
+
+```
+cat /proc/sys/net/ipv4/ip_forward    # = 1
+ping -c2 192.168.1.10                 # client LAN
+ping -c2 172.16.0.10                  # serveur DMZ
+ping -c2 8.8.8.8                      # Internet
+```
+CLIENT LAN :
+```
+ping -c2 192.168.1.254               # sa gw (firewall)
+ping -c2 172.16.0.10                 # traverse vers la DMZ
+```
+SERVEUR DMZ :
+```
+ping -c2 172.16.0.254               # sa gw (firewall)
+ping -c2 192.168.1.10              # traverse vers le LAN
+```
+CLIENT EXTERNE :
+```
+ping -c2 <IP_WAN_du_firewall>      # segment WAN
+```
 
 # 3. Squelette de depart
 

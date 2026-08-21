@@ -324,7 +324,7 @@ Reject : pfsense répond activement pour signifier le refus -> refuser avec mess
 
 ```
 Descriptive Name -> VPN-CA
-Method -> Import an existing Certificate Authority
+Method -> Create an internal Certificate Authority
 Key type → RSA, longueur 2048
 Digest Algorithm → SHA256
 Lifetime (days) → laisse la valeur par défaut (souvent 3650)
@@ -338,7 +338,8 @@ Save.
 
 ```
 Method → Create an internal Certificate
-Descriptive name → serveur-vpn Dans la section Internal Certificate :
+Descriptive name → serveur-vpn
+Dans la section Internal Certificate :
 Certificate authority → sélectionne VPN-CA 
 Key type → RSA, taille 2048
 Digest Algorithm → SHA256

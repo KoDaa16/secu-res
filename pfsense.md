@@ -54,12 +54,21 @@ Côté VPN (on s'en servira plus tard) : réseau du tunnel `10.0.8.0/30`, résea
 # 3. Les VMs à créer et leur réseau dans VirtualBox
 
 Cinq VMs au total (pas besoin du Windows Server : il ne sert que pour le VPN *remote access* du cours, pas pour cet examen) :
+Créer 2 réseaux "Host Only Adaptateur" en "config manuelle" et serveur dhcp désactivé :
+```bash
+Host only #1 :
+IPV4 : 172.16.0.5
+Masque réseau IPv4 (subnetmask) : 255.255.255.128
 
-- pfSense 1 - 2 cartes : carte 1 = WAN (Réseau NAT), carte 2 = LAN (Réseau interne « site1-lan »).
-- Routeur Linux (Debian) - 2 cartes : carte 1 sur « site1-lan », carte 2 sur « site1-cli ».
+Host only #2 :
+IPV4 : 172.18.0.5
+Masque réseau IPv4 (subnetmask) : 255.255.255.128
+```
+- pfSense 1 - 2 cartes : carte 1 = WAN (Réseau NAT), carte 2 = LAN (host only #1).
+- Routeur Linux (Debian) - 2 cartes : carte 1 sur (host only #1), carte 2 sur « site1-cli ».
 - Client Linux 1 (Debian) - 1 carte : sur « site1-cli ».
-- pfSense 2 - 2 cartes : carte 1 = WAN (Réseau NAT), carte 2 = LAN (Réseau interne « site2-lan »).
-- Client Linux 2 (Debian) - 1 carte : sur « site2-lan ».
+- pfSense 2 - 2 cartes : carte 1 = WAN (Réseau NAT), carte 2 = LAN (host only #2).
+- Client Linux 2 (Debian) - 1 carte : sur (host only #2).
 
 ---
 

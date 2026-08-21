@@ -304,7 +304,7 @@ Interface → OpenVPN
 Address Family → IPv4
 Protocol → TCP (SSH)
 Source → Network 172.18.0.0/25 
-Destination → Single host 172.16.0.129
+Destination → Address or Alias 172.16.0.129
 Destination Port Range → From SSH (22) To SSH (22)
 Save, puis Apply Changes.
 ```
@@ -313,6 +313,9 @@ sur client 1 sudo apt install openssh-server
 
 sur client 2 : ssh 172.16.0.129 #bloquer         ET ping 172.16.0.129 #passe
 
+remarque : 
+Block : pfSense jette le paquet sans rien dire -> charge en boucle
+Reject : pfsense répond activement pour signifier le refus -> refuser avec message
 ---
 
 # 13. Créer la Certificate authorities

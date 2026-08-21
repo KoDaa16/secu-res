@@ -152,7 +152,7 @@ ip -br a           # une seule IP : 172.16.0.10/16, plus d'APIPA
 ip route show      # default via 172.16.0.254, stable
 ps aux | grep dhcpcd    # dhcpcd ne doit plus tourner sur enp0s3
 ```
-
+---
 
 Test de la config avant de passer a nftables :
 FIREWALL (doit joindre ses 3 zones) :

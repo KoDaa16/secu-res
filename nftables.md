@@ -561,3 +561,12 @@ sudo ip route add default via 172.16.0.254     # remettre la bonne (adapter l'IP
 ip -br a          # ne doit rester QUE l'IP static
 ip route show     # "default via <gw>" doit apparaitre
 ```
+
+supp repertoire 
+```
+rm -r nom_du_repertoire
+```
+supp fichier
+```
+rm nom_du_fichier
+```

@@ -544,3 +544,20 @@ Politique par defaut sur les 3 chaines de filtrage : drop.
   client LAN.
 - Set blocked_IPs : bloquer sa propre plage WAN -> perte d'Internet. Exclure la plage
   du WAN.
+
+
+
+APIPA SUPP :
+
+```
+Correction propre (repart de interfaces) :
+sudo ip addr flush dev enp0s3
+sudo ip route flush dev enp0s3
+sudo systemctl restart networking
+
+sudo ip addr del 169.254.x.x/16 dev enp0s3    # enlever l'IP parasite (adapter)
+sudo ip route del default                      # enlever la mauvaise route
+sudo ip route add default via 172.16.0.254     # remettre la bonne (adapter l'IP gw)
+ip -br a          # ne doit rester QUE l'IP static
+ip route show     # "default via <gw>" doit apparaitre
+```

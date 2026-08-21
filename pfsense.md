@@ -277,7 +277,8 @@ Verifie le tunnel fonctionne → **Status → OpenVPN → Voir Virtual Adress : 
 Action → Pass
 Interface → OpenVPN
 Address Family → IPv4
-Protocol → AnySource → Any
+Protocol → Any
+Source → Any
 Destination → Any
 Description → ex. « Autoriser trafic VPN »
 Save, puis Apply Changes.

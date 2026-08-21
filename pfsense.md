@@ -128,8 +128,11 @@ auto enp0s8
 iface enp0s8 inet static
     address 172.16.0.254/25
 ```
-
-`sudo nano /etc/sysctl.conf` ajoute `net.ipv4.ip_forward=1` Puis applique avec `sudo sysctl -p`.
+Activer le routage :
+```bash
+echo "net.ipv4.ip_forward = 1" | sudo tee /etc/sysctl.d/99-routing.conf
+sudo sysctl --system
+```
 
 **Client Linux 1 :**
 

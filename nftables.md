@@ -29,10 +29,10 @@ entre zones est oblige de passer par le pare-feu. Le WAN donne l'acces Internet.
 Créer le "Réseau NAT" sur Virtual Box :
 Fichier -> Outils -> Réseau -> Nat Network -> Cliquer sur créer
 Dans Général option : 
-Nom : NatNetwork
-IPv4 Prefix: 10.1.31.0/24 
+-Nom : NatNetwork
+-IPv4 Prefix: 10.1.31.0/24 
 (ou laisse le défaut 10.0.2.0/24). L'essentiel : que ça ne recoupe pas 192.168.1.0/24 (LAN) ni 172.16.0.0/16 (DMZ).
-Enable DHCP -> COCHE LA CASE
+-Enable DHCP -> COCHE LA CASE
 
 VMs (4) :
 - Firewall (routeur / pare-feu) : Debian 13 (netinst), 3 cartes
